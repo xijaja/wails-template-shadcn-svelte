@@ -1,6 +1,13 @@
 <h1 align="center">wails-template-shadcn-svelte</h1>
 <p align="center">Wails template which includes: Shadcn, Svelte/kit out of the box</p>
 
+## Preview
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./ui-1.jpg" width="49%" alt="preview">
+  <img src="./ui-2.jpg" width="49%" alt="preview">
+</div>
+
 ## Use this template
 
 ```bash
