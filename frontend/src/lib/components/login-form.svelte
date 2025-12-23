@@ -1,16 +1,11 @@
 <script lang="ts">
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import type { HTMLAttributes } from "svelte/elements";
-	import {
-		FieldGroup,
-		Field,
-		FieldLabel,
-		FieldDescription,
-		FieldSeparator,
-	} from "$lib/components/ui/field/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { cn, type WithElementRef } from "$lib/utils.js";
+	import GalleryVerticalEndIcon from '@lucide/svelte/icons/gallery-vertical-end';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { FieldGroup, Field, FieldLabel, FieldDescription, FieldSeparator } from '$lib/components/ui/field/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { cn, type WithElementRef } from '$lib/utils.js';
+	import { goto } from '$app/navigation';
 
 	let {
 		ref = $bindable(null),
@@ -19,10 +14,15 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
 
 	const id = $props.id();
+
+	const handleSubmit = (event: Event) => {
+		event.preventDefault();
+		goto('/dashboard');
+	};
 </script>
 
-<div class={cn("flex flex-col gap-6", className)} bind:this={ref} {...restProps}>
-	<form>
+<div class={cn('flex flex-col gap-6', className)} bind:this={ref} {...restProps}>
+	<form onsubmit={handleSubmit}>
 		<FieldGroup>
 			<div class="flex flex-col items-center gap-2 text-center">
 				<a href="##" class="flex flex-col items-center gap-2 font-medium">
