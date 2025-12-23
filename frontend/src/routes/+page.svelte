@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DarkModel from '$lib/components/dark-model.svelte';
+	import DarkModel from '$lib/components/blocks/theme-toggle.svelte';
 	import LoginForm from '$lib/components/login-form.svelte';
 </script>
 

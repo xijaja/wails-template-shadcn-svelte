@@ -1,24 +1,18 @@
 <script lang="ts">
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import type { WithoutChildren } from "$lib/utils.js";
 	import type { ComponentProps } from "svelte";
+	import type { Icon } from "@tabler/icons-svelte";
 
 	let {
-		ref = $bindable(null),
 		items,
 		...restProps
-	}: ComponentProps<typeof Sidebar.Group> & {
-		items: {
-			title: string;
-			url: string;
-			// This should be `Component` after lucide-svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
-			badge?: string;
-		}[];
-	} = $props();
+	}: { items: { title: string; url: string; icon: Icon }[] } & WithoutChildren<
+		ComponentProps<typeof Sidebar.Group>
+	> = $props();
 </script>
 
-<Sidebar.Group bind:ref {...restProps}>
+<Sidebar.Group {...restProps}>
 	<Sidebar.GroupContent>
 		<Sidebar.Menu>
 			{#each items as item (item.title)}
@@ -31,9 +25,6 @@
 							</a>
 						{/snippet}
 					</Sidebar.MenuButton>
-					{#if item.badge}
-						<Sidebar.MenuBadge>{item.badge}</Sidebar.MenuBadge>
-					{/if}
 				</Sidebar.MenuItem>
 			{/each}
 		</Sidebar.Menu>

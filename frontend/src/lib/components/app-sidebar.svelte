@@ -1,171 +1,167 @@
-<script lang="ts" module>
-	import AudioWaveform from 'lucide-svelte/icons/audio-waveform';
-	import BookOpen from 'lucide-svelte/icons/book-open';
-	import Bot from 'lucide-svelte/icons/bot';
-	import ChartPie from 'lucide-svelte/icons/chart-pie';
-	import Command from 'lucide-svelte/icons/command';
-	import Frame from 'lucide-svelte/icons/frame';
-	import GalleryVerticalEnd from 'lucide-svelte/icons/gallery-vertical-end';
-	import Map from 'lucide-svelte/icons/map';
-	import Settings2 from 'lucide-svelte/icons/settings-2';
-	import SquareTerminal from 'lucide-svelte/icons/square-terminal';
+<script lang="ts">
+	import CameraIcon from "@tabler/icons-svelte/icons/camera";
+	import ChartBarIcon from "@tabler/icons-svelte/icons/chart-bar";
+	import DashboardIcon from "@tabler/icons-svelte/icons/dashboard";
+	import DatabaseIcon from "@tabler/icons-svelte/icons/database";
+	import FileAiIcon from "@tabler/icons-svelte/icons/file-ai";
+	import FileDescriptionIcon from "@tabler/icons-svelte/icons/file-description";
+	import FileWordIcon from "@tabler/icons-svelte/icons/file-word";
+	import FolderIcon from "@tabler/icons-svelte/icons/folder";
+	import HelpIcon from "@tabler/icons-svelte/icons/help";
+	import InnerShadowTopIcon from "@tabler/icons-svelte/icons/inner-shadow-top";
+	import ListDetailsIcon from "@tabler/icons-svelte/icons/list-details";
+	import ReportIcon from "@tabler/icons-svelte/icons/report";
+	import SearchIcon from "@tabler/icons-svelte/icons/search";
+	import SettingsIcon from "@tabler/icons-svelte/icons/settings";
+	import UsersIcon from "@tabler/icons-svelte/icons/users";
+	import NavDocuments from "./nav-documents.svelte";
+	import NavMain from "./nav-main.svelte";
+	import NavSecondary from "./nav-secondary.svelte";
+	import NavUser from "./nav-user.svelte";
+	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import type { ComponentProps } from "svelte";
 
-	// This is sample data.
 	const data = {
 		user: {
-			name: 'shadcn',
-			email: 'm@example.com',
-			avatar: 'favicon.png'
+			name: "shadcn",
+			email: "m@example.com",
+			avatar: "/avatars/shadcn.jpg",
 		},
-		teams: [
-			{
-				name: 'Acme Inc',
-				logo: GalleryVerticalEnd,
-				plan: 'Enterprise'
-			},
-			{
-				name: 'Acme Corp.',
-				logo: AudioWaveform,
-				plan: 'Startup'
-			},
-			{
-				name: 'Evil Corp.',
-				logo: Command,
-				plan: 'Free'
-			}
-		],
 		navMain: [
 			{
-				title: 'Playground',
-				url: '#',
-				icon: SquareTerminal,
-				isActive: true,
-				items: [
-					{
-						title: 'History',
-						url: '#'
-					},
-					{
-						title: 'Starred',
-						url: '#'
-					},
-					{
-						title: 'Settings',
-						url: '#'
-					}
-				]
+				title: "Dashboard",
+				url: "#",
+				icon: DashboardIcon,
 			},
 			{
-				title: 'Models',
-				url: '#',
-				icon: Bot,
-				items: [
-					{
-						title: 'Genesis',
-						url: '#'
-					},
-					{
-						title: 'Explorer',
-						url: '#'
-					},
-					{
-						title: 'Quantum',
-						url: '#'
-					}
-				]
+				title: "Lifecycle",
+				url: "#",
+				icon: ListDetailsIcon,
 			},
 			{
-				title: 'Documentation',
-				url: '#',
-				icon: BookOpen,
-				items: [
-					{
-						title: 'Introduction',
-						url: '#'
-					},
-					{
-						title: 'Get Started',
-						url: '#'
-					},
-					{
-						title: 'Tutorials',
-						url: '#'
-					},
-					{
-						title: 'Changelog',
-						url: '#'
-					}
-				]
+				title: "Analytics",
+				url: "#",
+				icon: ChartBarIcon,
 			},
 			{
-				title: 'Settings',
-				url: '#',
-				icon: Settings2,
-				items: [
-					{
-						title: 'General',
-						url: '#'
-					},
-					{
-						title: 'Team',
-						url: '#'
-					},
-					{
-						title: 'Billing',
-						url: '#'
-					},
-					{
-						title: 'Limits',
-						url: '#'
-					}
-				]
-			}
+				title: "Projects",
+				url: "#",
+				icon: FolderIcon,
+			},
+			{
+				title: "Team",
+				url: "#",
+				icon: UsersIcon,
+			},
 		],
-		projects: [
+		navClouds: [
 			{
-				name: 'Design Engineering',
-				url: '#',
-				icon: Frame
+				title: "Capture",
+				icon: CameraIcon,
+				isActive: true,
+				url: "#",
+				items: [
+					{
+						title: "Active Proposals",
+						url: "#",
+					},
+					{
+						title: "Archived",
+						url: "#",
+					},
+				],
 			},
 			{
-				name: 'Sales & Marketing',
-				url: '#',
-				icon: ChartPie
+				title: "Proposal",
+				icon: FileDescriptionIcon,
+				url: "#",
+				items: [
+					{
+						title: "Active Proposals",
+						url: "#",
+					},
+					{
+						title: "Archived",
+						url: "#",
+					},
+				],
 			},
 			{
-				name: 'Travel',
-				url: '#',
-				icon: Map
-			}
-		]
+				title: "Prompts",
+				icon: FileAiIcon,
+				url: "#",
+				items: [
+					{
+						title: "Active Proposals",
+						url: "#",
+					},
+					{
+						title: "Archived",
+						url: "#",
+					},
+				],
+			},
+		],
+		navSecondary: [
+			{
+				title: "Settings",
+				url: "#",
+				icon: SettingsIcon,
+			},
+			{
+				title: "Get Help",
+				url: "#",
+				icon: HelpIcon,
+			},
+			{
+				title: "Search",
+				url: "#",
+				icon: SearchIcon,
+			},
+		],
+		documents: [
+			{
+				name: "Data Library",
+				url: "#",
+				icon: DatabaseIcon,
+			},
+			{
+				name: "Reports",
+				url: "#",
+				icon: ReportIcon,
+			},
+			{
+				name: "Word Assistant",
+				url: "#",
+				icon: FileWordIcon,
+			},
+		],
 	};
+
+	let { ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
-<script lang="ts">
-	import NavMain from '$lib/components/nav-main.svelte';
-	import NavProjects from '$lib/components/nav-projects.svelte';
-	import NavUser from '$lib/components/nav-user.svelte';
-	import TeamSwitcher from '$lib/components/team-switcher.svelte';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import type { ComponentProps } from 'svelte';
-
-	let {
-		ref = $bindable(null),
-		collapsible = 'icon',
-		...restProps
-	}: ComponentProps<typeof Sidebar.Root> = $props();
-</script>
-
-<Sidebar.Root bind:ref {collapsible} {...restProps}>
+<Sidebar.Root collapsible="offcanvas" {...restProps}>
 	<Sidebar.Header>
-		<TeamSwitcher teams={data.teams} />
+		<Sidebar.Menu>
+			<Sidebar.MenuItem>
+				<Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:!p-1.5">
+					{#snippet child({ props })}
+						<a href="##" {...props}>
+							<InnerShadowTopIcon class="!size-5" />
+							<span class="text-base font-semibold">Acme Inc.</span>
+						</a>
+					{/snippet}
+				</Sidebar.MenuButton>
+			</Sidebar.MenuItem>
+		</Sidebar.Menu>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
-		<NavProjects projects={data.projects} />
+		<NavDocuments items={data.documents} />
+		<NavSecondary items={data.navSecondary} class="mt-auto" />
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser user={data.user} />
 	</Sidebar.Footer>
-	<Sidebar.Rail />
 </Sidebar.Root>
