@@ -2,18 +2,17 @@ package main
 
 import (
 	"embed"
-	"log"
-	"runtime"
-
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
+	"log"
+	"runtime"
 )
 
-//go:embed frontend/build
+//go:embed all:frontend/build
 var assets embed.FS
 
 //go:embed build/appicon.png
@@ -26,12 +25,10 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "{{.ProjectName}}",
-		Width:             1024,
-		Height:            768,
+		Width:             1440,
+		Height:            1080,
 		MinWidth:          1024,
 		MinHeight:         768,
-		// MaxWidth:          1280,
-		// MaxHeight:         800,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         runtime.GOOS != "darwin",
